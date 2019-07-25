@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="memoryApp" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" type="text/css" href="index.css">
+
+    <!--modules-->
+    <script src="modules/angular.js"></script>
+    <script src="modules/bootstrap.js"></script>
+
+    <!--controllers-->
+    <script src="controllers/table.ctrl.js"></script>
+    <script src="controllers/guesses.ctrl.js"></script>
+
+    <!--services-->
+    <script src="services/table_manager.service.js"></script>
+    <script src="services/guesses.service.js"></script>
+
+    <!--classes-->
+    <script src="cail.js"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="center">
+    <div class="center" ng-controller="tableCtrl as ctrl">
+        <button class="center learn-more" ng-click="tableManagerService.init()">Reset Game</button>
+        <br><br><br>
+        <div class="div center" ng-click="tableManagerService.onClick($index)"
+            ng-repeat="cail in tableManagerService.table track by $index">
+            <div class="center" ng-class="ctrl.getClass(tableManagerService.table[$index])">
+                <span class="center">
+                    {{cail.showedValue}}
+                </span>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+    <div class="center" ng-controller="guessesCtrl">
+        <label>Guesses: {{guessesService.guess}}</label>
+        <label>Correct: {{guessesService.correct}}</label>
+    </div>
+</div>
+</body>
+
+</html>
